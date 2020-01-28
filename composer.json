@@ -1,18 +1,17 @@
 {
-  "name" : "slev/ltree-extension-bundle",
+  "name" : "LiruQueenston/ltree-extension-bundle",
   "description" : "Symfony 2 bundle with additional functionality for postgresql ltee extension",
-  "version" : "0.0.1",
+  "version" : "0.0.2",
   "type" : "symfony-bundle",
-  "homepage": "https://github.com/semin-lev/ltree-extension-bundle",
+  "homepage": "https://github.com/LiruQueenston/ltree-extension-bundle",
   "license" : "MIT",
   "keywords" : ["ltree", "postgresql"],
   "authors" : [{
-    "name" : "Lev Semin",
-    "email" : "semin.lev@gmail.com"
+    "name" : "Dmtrii Lastov",
+    "email" : "mmwarailgun@gmail.com"
   }],
   "require" : {
-    "php": ">=5.4",
-    "symfony/symfony": ">=2.3",
+    "php": ">=7.2",
     "doctrine/orm": "~2.2,>=2.2.3",
     "doctrine/doctrine-bundle": "~1.2"
   },
