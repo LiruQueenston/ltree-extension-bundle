@@ -162,7 +162,7 @@ class LtreeEntityRepository extends EntityRepository implements LtreeEntityRepos
         $pathName = $this->getAnnotationDriver()->getPathProperty($entity)->getName();
         $pathValue = $this->getPropertyAccessor()->getValue($entity, $pathName);
         $parentName = $this->getAnnotationDriver()->getParentProperty($entity)->getName();
-        $childName = $this->getAnnotationDriver()->getChildsProperty($entity)->getName();
+        $childName = $this->getAnnotationDriver()->getChildrenProperty($entity)->getName();
         return $this->treeBuilder->buildTree($result, $pathName, $pathValue, $parentName, $childName);
     }
 

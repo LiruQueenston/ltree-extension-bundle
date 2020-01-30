@@ -12,7 +12,7 @@ namespace Slev\LtreeExtensionBundle\Annotation\Driver;
 interface AnnotationDriverInterface
 {
     const ENTITY_ANNOTATION = '\\Slev\\LtreeExtensionBundle\\Annotation\\LtreeEntity';
-    const CHILDS_ANNOTATION = '\\Slev\\LtreeExtensionBundle\\Annotation\\LtreeChilds';
+    const CHILDREN_ANNOTATION = '\\Slev\\LtreeExtensionBundle\\Annotation\\LtreeChildren';
     const PARENT_ANNOTATION = '\\Slev\\LtreeExtensionBundle\\Annotation\\LtreeParent';
     const PATH_ANNOTATION = '\\Slev\\LtreeExtensionBundle\\Annotation\\LtreePath';
 
@@ -33,13 +33,13 @@ interface AnnotationDriverInterface
     public function classIsLtree($className);
 
     /**
-     * Return childs property reflection object
+     * Return children property reflection object
      *
      * @param $object
      * @return \ReflectionProperty
      * @throws PropertyNotFoundException
      */
-    public function getChildsProperty($object);
+    public function getChildrenProperty($object);
 
     /**
      * Return parent property reflection object

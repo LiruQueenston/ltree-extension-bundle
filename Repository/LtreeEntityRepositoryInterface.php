@@ -58,8 +58,8 @@ interface LtreeEntityRepositoryInterface
      * @param int $hydrate Doctrine processing mode to be used during hydration process.
      *                               One of the Query::HYDRATE_* constants.
      * @return array If $treeMode is true, result will be grouped to tree.
-     *                  If hydrate is object, children placed in childs property.
-     *                  If hydrate is array, children placed in __childs key.
+     *                  If hydrate is object, children placed in children property.
+     *                  If hydrate is array, children placed in __children key.
      *               If $treeMode is false, result will be in one level array
      */
     public function getAllChildren($entity, $treeMode=false, $hydrate=Query::HYDRATE_OBJECT);

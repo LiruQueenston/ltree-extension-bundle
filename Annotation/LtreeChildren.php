@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 /**
  * Created by PhpStorm.
  * User: levsemin
@@ -10,13 +11,12 @@ namespace Slev\LtreeExtensionBundle\Annotation;
 
 
 /**
- * Class LtreeChilds
  * @package Slev\LtreeExtensionBundle\Annotation
  *
  * @Annotation
  * @Target("PROPERTY")
  */
-class LtreeChilds
+class LtreeChildren
 {
 
 }

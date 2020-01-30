@@ -11,14 +11,14 @@ namespace Slev\LtreeExtensionBundle\TreeBuilder;
 
 class TreeBuilderFromArrayResult implements TreeBuilderInterface
 {
-    const CHILD_KEY = '__childs';
+    const CHILD_KEY = '__children';
 
     /**
      * {@inheritdoc}
      */
     public function buildTree($list, $pathName, $parentPath=null, $parentName=null, $childrenName=null)
     {
-        $nodeList = array();
+        $nodeList = [];
         $pathFinder = function(array $path, array &$nodeList, $value) use (&$pathFinder){
             if (count($path)==1){
                 $nodeList[array_shift($path)]=$value;

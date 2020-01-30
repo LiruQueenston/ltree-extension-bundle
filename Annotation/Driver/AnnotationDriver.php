@@ -40,9 +40,9 @@ class AnnotationDriver implements AnnotationDriverInterface
     /**
      * {@inheritdoc}
      */
-    public function getChildsProperty($object)
+    public function getChildrenProperty($object)
     {
-        return $this->findAnnotation($object, self::CHILDS_ANNOTATION);
+        return $this->findAnnotation($object, self::CHILDREN_ANNOTATION);
     }
 
     /**

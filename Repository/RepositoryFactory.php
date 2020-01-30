@@ -9,6 +9,7 @@
 namespace Slev\LtreeExtensionBundle\Repository;
 
 
+use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Slev\LtreeExtensionBundle\Annotation\Driver\AnnotationDriverInterface;
 use Slev\LtreeExtensionBundle\TreeBuilder\TreeBuilderInterface;
@@ -19,9 +20,9 @@ class RepositoryFactory implements \Doctrine\ORM\Repository\RepositoryFactory
     /**
      * The list of EntityRepository instances.
      *
-     * @var array<\Doctrine\Common\Persistence\ObjectRepository>
+     * @var ObjectRepository[]
      */
-    protected $repositoryList = array();
+    protected $repositoryList = [];
 
     /**
      * @var AnnotationDriverInterface
@@ -67,10 +68,10 @@ class RepositoryFactory implements \Doctrine\ORM\Repository\RepositoryFactory
     /**
      * Create a new repository instance for an entity class.
      *
-     * @param \Doctrine\ORM\EntityManagerInterface $entityManager The EntityManager instance.
+     * @param EntityManagerInterface $entityManager The EntityManager instance.
      * @param string                               $entityName    The name of the entity.
      *
-     * @return \Doctrine\Common\Persistence\ObjectRepository
+     * @return ObjectRepository
      */
     protected function createRepository(EntityManagerInterface $entityManager, $entityName)
     {
