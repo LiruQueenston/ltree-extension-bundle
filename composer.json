@@ -1,7 +1,7 @@
 {
   "name" : "LiruQueenston/ltree-extension-bundle",
   "description" : "Symfony 2 bundle with additional functionality for postgresql ltee extension",
-  "version" : "0.1.1",
+  "version" : "0.1.2",
   "type" : "symfony-bundle",
   "homepage": "https://github.com/LiruQueenston/ltree-extension-bundle",
   "license" : "MIT",
@@ -20,7 +20,7 @@
   },
   "extra" : {
     "branch-alias" : {
-      "dev-master" : "0.0.x-dev"
+      "dev-master" : "0.1.x-dev"
     }
   }
 }

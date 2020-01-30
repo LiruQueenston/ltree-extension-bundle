@@ -48,7 +48,7 @@ class LTreeType extends Type
      */
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
-        return implode('.', $value);
+        return is_array($value) ? implode('.', $value) : null;
     }
 
     /**
