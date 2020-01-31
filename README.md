@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/lastov-dmitrii/ltree-extension-bundle.svg?branch=master)](https://travis-ci.org/lastov-dmitrii/ltree-extension-bundle)
+
 # Ltree extension bundle
 
 This bundle grants access to PostgreSQL ltree methods
