@@ -1,30 +1,30 @@
 services:
-#    slev_ltree_extension.example:
-#        class: Slev\LtreeExtensionBundle\Example
+#    ddl_ltree_extension.example:
+#        class: DDL\LtreeExtensionBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]
-    slev_ltreeextensionbundle.listener.ltreesubscriber:
-        class: Slev\LtreeExtensionBundle\Listener\LtreeSubscriber
-        arguments: [ "@slev_ltreeextensionbundle.annotation.annotation_driver", "@property_accessor" ]
+    ddl_ltreeextensionbundle.listener.ltreesubscriber:
+        class: DDL\LtreeExtensionBundle\Listener\LtreeSubscriber
+        arguments: [ "@ddl_ltreeextensionbundle.annotation.annotation_driver", "@property_accessor" ]
         tags:
             - { name: doctrine.event_subscriber }
 
-    slev_ltreeextensionbundle.annotation.annotation_driver:
-        class: Slev\LtreeExtensionBundle\Annotation\Driver\AnnotationDriver
+    ddl_ltreeextensionbundle.annotation.annotation_driver:
+        class: DDL\LtreeExtensionBundle\Annotation\Driver\AnnotationDriver
         arguments: [ "@annotation_reader" ]
 
-    slev_ltreeextensionbundle.treebuilder.treebuilderfromarrayresult:
-        class: Slev\LtreeExtensionBundle\TreeBuilder\TreeBuilderFromArrayResult
+    ddl_ltreeextensionbundle.treebuilder.treebuilderfromarrayresult:
+        class: DDL\LtreeExtensionBundle\TreeBuilder\TreeBuilderFromArrayResult
         public: false
 
-    slev_ltreeextensionbundle.treebuilder.treebuilderfromobjectresult:
-        class: Slev\LtreeExtensionBundle\TreeBuilder\TreeBuilderFromObjectResult
+    ddl_ltreeextensionbundle.treebuilder.treebuilderfromobjectresult:
+        class: DDL\LtreeExtensionBundle\TreeBuilder\TreeBuilderFromObjectResult
         arguments: [ "@property_accessor" ]
         public: false
 
-    slev_ltreeextensionbundle.treebuilder.treebuilder:
-        class: Slev\LtreeExtensionBundle\TreeBuilder\TreeBuilder
-        arguments: [ "@slev_ltreeextensionbundle.treebuilder.treebuilderfromarrayresult", "@slev_ltreeextensionbundle.treebuilder.treebuilderfromobjectresult" ]
+    ddl_ltreeextensionbundle.treebuilder.treebuilder:
+        class: DDL\LtreeExtensionBundle\TreeBuilder\TreeBuilder
+        arguments: [ "@ddl_ltreeextensionbundle.treebuilder.treebuilderfromarrayresult", "@ddl_ltreeextensionbundle.treebuilder.treebuilderfromobjectresult" ]
 
-    slev_ltreeextensionbundle.repository_factory:
-        class: Slev\LtreeExtensionBundle\Repository\RepositoryFactory
-        arguments: [ "@slev_ltreeextensionbundle.annotation.annotation_driver", "@property_accessor", "@slev_ltreeextensionbundle.treebuilder.treebuilder" ]
+    ddl_ltreeextensionbundle.repository_factory:
+        class: DDL\LtreeExtensionBundle\Repository\RepositoryFactory
+        arguments: [ "@ddl_ltreeextensionbundle.annotation.annotation_driver", "@property_accessor", "@ddl_ltreeextensionbundle.treebuilder.treebuilder" ]

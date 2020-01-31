@@ -1,87 +1,67 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: levsemin
- * Date: 14.03.15
- * Time: 11:12
- */
 
-namespace Slev\LtreeExtensionBundle\Annotation\Driver;
+declare(strict_types=1);
 
+namespace DDL\LtreeExtensionBundle\Annotation\Driver;
 
 use Doctrine\Common\Annotations\Reader;
+use ReflectionClass;
+use ReflectionObject;
+use ReflectionProperty;
 
 class AnnotationDriver implements AnnotationDriverInterface
 {
     /** @var  Reader */
     private $reader;
 
-    function __construct(Reader $reader)
+    public function __construct(Reader $reader)
     {
         $this->reader = $reader;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function entityIsLtree($object)
+    public function entityIsLtree(object $object): bool
     {
-        return (bool)$this->getReader()->getClassAnnotation(new \ReflectionObject($object), self::ENTITY_ANNOTATION);
+        return (bool) $this->getReader()->getClassAnnotation(new ReflectionObject($object), self::ENTITY_ANNOTATION);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function classIsLtree($className)
+    public function classIsLtree(string $className): bool
     {
-        return (bool)$this->getReader()->getClassAnnotation(new \ReflectionClass($className), self::ENTITY_ANNOTATION);
+        return (bool) $this->getReader()->getClassAnnotation(new ReflectionClass($className), self::ENTITY_ANNOTATION);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getChildrenProperty($object)
+    public function getChildrenProperty(object $object): ReflectionProperty
     {
         return $this->findAnnotation($object, self::CHILDREN_ANNOTATION);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getParentProperty($object)
+    public function getParentProperty(object $object): ReflectionProperty
     {
         return $this->findAnnotation($object, self::PARENT_ANNOTATION);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getPathProperty($object)
+    public function getPathProperty(object $object): ReflectionProperty
     {
         return $this->findAnnotation($object, self::PATH_ANNOTATION);
     }
 
-    /**
-     * @return Reader
-     */
-    public function getReader()
+    public function getReader(): Reader
     {
         return $this->reader;
     }
 
     /**
-     * @param $object
-     * @param $annotationName
-     * @return \ReflectionProperty
      * @throws PropertyNotFoundException
      */
-    protected function findAnnotation($object, $annotationName)
+    protected function findAnnotation(object $object, string $annotationName): ReflectionProperty
     {
-        $reflObject = new \ReflectionObject($object);
-        foreach($reflObject->getProperties() as $property){
+        $reflectionObject = new ReflectionObject($object);
+        foreach ($reflectionObject->getProperties() as $property) {
             $result = $this->getReader()->getPropertyAnnotation($property, $annotationName);
-            if ($result) return $property;
+            if ($result) {
+                return $property;
+            }
         }
+
         throw new PropertyNotFoundException($object, $annotationName);
     }
 }

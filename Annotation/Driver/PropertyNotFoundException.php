@@ -1,45 +1,39 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: levsemin
- * Date: 14.03.15
- * Time: 11:07
- */
 
-namespace Slev\LtreeExtensionBundle\Annotation\Driver;
+declare(strict_types=1);
 
+namespace DDL\LtreeExtensionBundle\Annotation\Driver;
 
-class PropertyNotFoundException extends \Exception
+use Exception;
+use function get_class;
+use function sprintf;
+
+class PropertyNotFoundException extends Exception
 {
+    /** @var string */
     private $className;
 
+    /** @var string */
     private $annotationClassName;
 
-    /**
-     * @param object $object
-     * @param string $annotationClassName
-     */
-    function __construct($object, $annotationClassName)
+    public function __construct(object $object, string $annotationClassName)
     {
         $this->className = get_class($object);
         $this->annotationClassName = $annotationClassName;
 
-        parent::__construct(sprintf("Class %s does not exist property annotated by %s",
-            $this->getClassName(), $this->getAnnotationClassName()));
+        parent::__construct(sprintf(
+            'Class %s does not exist property annotated by %s',
+            $this->getClassName(),
+            $this->getAnnotationClassName()
+        ));
     }
 
-    /**
-     * @return string
-     */
-    public function getClassName()
+    public function getClassName(): string
     {
         return $this->className;
     }
 
-    /**
-     * @return string
-     */
-    public function getAnnotationClassName()
+    public function getAnnotationClassName(): string
     {
         return $this->annotationClassName;
     }

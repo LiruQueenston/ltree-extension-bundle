@@ -1,23 +1,22 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: levsemin
- * Date: 14.03.15
- * Time: 16:04
- */
 
-namespace Slev\LtreeExtensionBundle\TreeBuilder;
+declare(strict_types=1);
 
+namespace DDL\LtreeExtensionBundle\TreeBuilder;
+
+use Countable;
+use Traversable;
 
 interface TreeBuilderInterface
 {
     /**
-     * @param \Traversable|\Countable|array $list
+     * @param mixed[]|Traversable|Countable|array $list
      * @param string $pathName name of path property
-     * @param null|string $parentPath path from parent entity
-     * @param null|string $parentName parent property name
-     * @param null|string $childrenName child property name
-     * @return array|object
+     * @param mixed[] $parentPath path from parent entity
+     * @param string|null $parentName parent property name
+     * @param string|null $childrenName child property name
+     *
+     * @return mixed[]|object
      */
-    public function buildTree($list, $pathName, $parentPath=null, $parentName=null, $childrenName=null);
+    public function buildTree($list, string $pathName, array $parentPath = [], ?string $parentName = null, ?string $childrenName = null);
 }

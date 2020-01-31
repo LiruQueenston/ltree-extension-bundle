@@ -1,13 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: levsemin
- * Date: 14.03.15
- * Time: 17:27
- */
 
-namespace Slev\LtreeExtensionBundle\TreeBuilder;
+declare(strict_types=1);
 
+namespace DDL\LtreeExtensionBundle\TreeBuilder;
+
+use LogicException;
+use function is_array;
+use function is_object;
 
 class TreeBuilder implements TreeBuilderInterface
 {
@@ -17,7 +16,7 @@ class TreeBuilder implements TreeBuilderInterface
     /** @var  TreeBuilderInterface */
     protected $objectBuilder;
 
-    function __construct(TreeBuilderInterface $arrayBuilder, TreeBuilderInterface $objectBuilder)
+    public function __construct(TreeBuilderInterface $arrayBuilder, TreeBuilderInterface $objectBuilder)
     {
         $this->arrayBuilder = $arrayBuilder;
         $this->objectBuilder = $objectBuilder;
@@ -26,19 +25,22 @@ class TreeBuilder implements TreeBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function buildTree($list, $pathName, $parentPath = null, $parentName = null, $childrenName = null)
+    public function buildTree($list, string $pathName, array $parentPath = [], ?string $parentName = null, ?string $childrenName = null)
     {
         $element = null;
-        foreach ($list as $item){
+        foreach ($list as $item) {
             $element = $item;
             break;
         }
-        if (is_array($element)){
+
+        if (is_array($element)) {
             return $this->arrayBuilder->buildTree($list, $pathName, $parentPath, $parentName, $childrenName);
         }
-        if (is_object($element)){
+
+        if (is_object($element)) {
             return $this->objectBuilder->buildTree($list, $pathName, $parentPath, $parentName, $childrenName);
         }
-        throw new \LogicException("Unable to find builder");
+
+        throw new LogicException('Unable to find builder');
     }
 }

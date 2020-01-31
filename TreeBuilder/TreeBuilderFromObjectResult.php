@@ -1,35 +1,27 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: levsemin
- * Date: 14.03.15
- * Time: 17:03
- */
 
-namespace Slev\LtreeExtensionBundle\TreeBuilder;
+declare(strict_types=1);
 
+namespace DDL\LtreeExtensionBundle\TreeBuilder;
 
-use Slev\LtreeExtensionBundle\TreeBuilder\Exceptions\NotImplementException;
+use DDL\LtreeExtensionBundle\TreeBuilder\Exceptions\NotImplementException;
 use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 
 class TreeBuilderFromObjectResult implements TreeBuilderInterface
 {
-    /**
-     * @var PropertyAccessorInterface
-     */
+    /** @var PropertyAccessorInterface */
     protected $propertyAccessor;
 
-    function __construct(PropertyAccessorInterface $propertyAccessor)
+    public function __construct(PropertyAccessorInterface $propertyAccessor)
     {
         $this->propertyAccessor = $propertyAccessor;
     }
 
-
     /**
      * {@inheritdoc}
      */
-    public function buildTree($list, $pathName, $parentPath = null, $parentName = null, $childrenName = null)
+    public function buildTree($list, string $pathName, array $parentPath = [], ?string $parentName = null, ?string $childrenName = null)
     {
-        throw new NotImplementException("Build tree from object not implement yet");
+        throw new NotImplementException('Build tree from object not implement yet');
     }
 }

@@ -1,21 +1,13 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: levsemin
- * Date: 21.03.15
- * Time: 7:19
- */
 
-namespace Slev\LtreeExtensionBundle\Annotation;
+declare(strict_types=1);
+
+namespace DDL\LtreeExtensionBundle\Annotation;
 
 /**
- * Class LtreeEntity
- * @package Slev\LtreeExtensionBundle\Annotation
- *
  * @Annotation
  * @Target("CLASS")
  */
 class LtreeEntity
 {
-
 }

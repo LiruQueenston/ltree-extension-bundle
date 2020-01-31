@@ -1,73 +1,58 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: levsemin
- * Date: 01.03.15
- * Time: 16:10
- */
 
-namespace Slev\LtreeExtensionBundle\Repository;
+declare(strict_types=1);
 
+namespace DDL\LtreeExtensionBundle\Repository;
 
+use DDL\LtreeExtensionBundle\Annotation\Driver\AnnotationDriverInterface;
+use DDL\LtreeExtensionBundle\TreeBuilder\TreeBuilderInterface;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
-use Slev\LtreeExtensionBundle\Annotation\Driver\AnnotationDriverInterface;
-use Slev\LtreeExtensionBundle\TreeBuilder\TreeBuilderInterface;
 use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 
 interface LtreeEntityRepositoryInterface
 {
-    /**
-     * @param TreeBuilderInterface $treeBuilder
-     */
-    public function setTreeBuilder(TreeBuilderInterface $treeBuilder);
+    public function setTreeBuilder(TreeBuilderInterface $treeBuilder): void;
 
-    /**
-     * @param PropertyAccessorInterface $propertyAccessor
-     */
-    public function setPropertyAccessor(PropertyAccessorInterface $propertyAccessor);
+    public function setPropertyAccessor(PropertyAccessorInterface $propertyAccessor): void;
 
-    /**
-     * @param AnnotationDriverInterface $annotationDriver
-     */
-    public function setAnnotationDriver(AnnotationDriverInterface $annotationDriver);
+    public function setAnnotationDriver(AnnotationDriverInterface $annotationDriver): void;
 
     /**
      * @param object $entity object entity
-     * @return QueryBuilder
      */
-    public function getAllParentQueryBuilder($entity);
+    public function getAllParentQueryBuilder(object $entity): QueryBuilder;
 
     /**
      * @param object $entity object entity
      * @param int $hydrate Doctrine processing mode to be used during hydration process.
      *                               One of the Query::HYDRATE_* constants.
-     * @return array with parents for $entity. The root node is last
+     *
+     * @return mixed[] with parents for $entity. The root node is last
      */
-    public function getAllParent($entity, $hydrate=Query::HYDRATE_OBJECT);
+    public function getAllParent(object $entity, int $hydrate = Query::HYDRATE_OBJECT): array;
 
     /**
      * @param object $entity object entity
-     * @return QueryBuilder
      */
-    public function getAllChildrenQueryBuilder($entity);
+    public function getAllChildrenQueryBuilder(object $entity): QueryBuilder;
 
     /**
      * @param object $entity object entity
      * @param bool $treeMode This flag set how result will be presented
      * @param int $hydrate Doctrine processing mode to be used during hydration process.
      *                               One of the Query::HYDRATE_* constants.
-     * @return array If $treeMode is true, result will be grouped to tree.
+     *
+     * @return mixed[] If $treeMode is true, result will be grouped to tree.
      *                  If hydrate is object, children placed in children property.
      *                  If hydrate is array, children placed in __children key.
      *               If $treeMode is false, result will be in one level array
      */
-    public function getAllChildren($entity, $treeMode=false, $hydrate=Query::HYDRATE_OBJECT);
+    public function getAllChildren(object $entity, bool $treeMode = false, int $hydrate = Query::HYDRATE_OBJECT): array;
 
     /**
      * @param object $entity object entity
-     * @param object|array $to object or path array
-     * @return void
+     * @param object|mixed[] $to object or path array
      */
-    public function moveNode($entity, $to);
+    public function moveNode(object $entity, $to): void;
 }

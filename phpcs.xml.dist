@@ -9,16 +9,21 @@
     <arg value="nps"/>
 
     <!-- Directories to be checked -->
-    <file>src</file>
-    <file>tests</file>
-
-    <exclude-pattern>tests/dependencies/*</exclude-pattern>
+    <file>Annotation</file>
+    <file>DependencyInjection</file>
+    <file>DqlFunction</file>
+    <file>Listener</file>
+    <file>Repository</file>
+    <file>Traits</file>
+    <file>TreeBuilder</file>
+    <file>Types</file>
 
     <!-- Include full Doctrine Coding Standard -->
     <rule ref="Doctrine">
         <exclude name="SlevomatCodingStandard.Classes.SuperfluousInterfaceNaming.SuperfluousSuffix"/>
         <exclude name="SlevomatCodingStandard.Classes.SuperfluousExceptionNaming.SuperfluousSuffix"/>
         <exclude name="SlevomatCodingStandard.Classes.SuperfluousAbstractClassNaming.SuperfluousPrefix"/>
+        <exclude name="SlevomatCodingStandard.Classes.SuperfluousTraitNaming.SuperfluousSuffix"/>
         <exclude name="Squiz.Commenting.FunctionComment.InvalidNoReturn" />
         <exclude name="Generic.Formatting.MultipleStatementAlignment" />
     </rule>

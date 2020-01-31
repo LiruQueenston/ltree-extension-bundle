@@ -1,28 +1,25 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: vestera
- * Date: 22.01.2015
- * Time: 3:43
- */
 
-namespace Slev\LtreeExtensionBundle\Types;
+declare(strict_types=1);
 
-use Doctrine\DBAL\Types\Type;
+namespace DDL\LtreeExtensionBundle\Types;
+
 use Doctrine\DBAL\Platforms\AbstractPlatform;
+use Doctrine\DBAL\Types\Type;
+use function explode;
+use function implode;
+use function is_array;
 
 class LTreeType extends Type
 {
-    const TYPE_NAME = 'ltree';
+    public const TYPE_NAME = 'ltree';
 
     /**
-     * @param array $fieldDeclaration
-     * @param AbstractPlatform $platform
-     * @return string
+     * { @inheritDoc }
      */
-    public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
+    public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform): string
     {
-        return "ltree";
+        return 'ltree';
     }
 
     /**
@@ -31,6 +28,7 @@ class LTreeType extends Type
      *
      * @param mixed $value The value to convert.
      * @param AbstractPlatform $platform The currently used database platform.
+     *
      * @return mixed The PHP representation of the value.
      */
     public function convertToPHPValue($value, AbstractPlatform $platform)
@@ -44,6 +42,7 @@ class LTreeType extends Type
      *
      * @param mixed $value The value to convert.
      * @param AbstractPlatform $platform The currently used database platform.
+     *
      * @return mixed The database representation of the value.
      */
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
@@ -51,11 +50,13 @@ class LTreeType extends Type
         return is_array($value) ? implode('.', $value) : null;
     }
 
-    /**
-     * @return string
-     */
-    public function getName()
+    public function getName(): string
     {
         return self::TYPE_NAME;
+    }
+
+    public function requiresSQLCommentHint(AbstractPlatform $platform): bool
+    {
+        return true;
     }
 }

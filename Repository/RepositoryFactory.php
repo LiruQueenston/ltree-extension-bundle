@@ -1,19 +1,17 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: levsemin
- * Date: 15.03.15
- * Time: 9:15
- */
 
-namespace Slev\LtreeExtensionBundle\Repository;
+declare(strict_types=1);
 
+namespace DDL\LtreeExtensionBundle\Repository;
 
+use DDL\LtreeExtensionBundle\Annotation\Driver\AnnotationDriverInterface;
+use DDL\LtreeExtensionBundle\TreeBuilder\TreeBuilderInterface;
 use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Slev\LtreeExtensionBundle\Annotation\Driver\AnnotationDriverInterface;
-use Slev\LtreeExtensionBundle\TreeBuilder\TreeBuilderInterface;
 use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
+use function assert;
+use function is_a;
+use function ltrim;
 
 class RepositoryFactory implements \Doctrine\ORM\Repository\RepositoryFactory
 {
@@ -24,24 +22,20 @@ class RepositoryFactory implements \Doctrine\ORM\Repository\RepositoryFactory
      */
     protected $repositoryList = [];
 
-    /**
-     * @var AnnotationDriverInterface
-     */
+    /** @var AnnotationDriverInterface */
     protected $annotationDriver;
 
-    /**
-     * @var PropertyAccessorInterface
-     */
+    /** @var PropertyAccessorInterface */
     protected $propertyAccessor;
 
-    /**
-     * @var TreeBuilderInterface
-     */
+    /** @var TreeBuilderInterface */
     protected $treeBuilder;
 
-    function __construct(AnnotationDriverInterface $annotationDriver, PropertyAccessorInterface $propertyAccessor,
-                         TreeBuilderInterface $treeBuilder)
-    {
+    public function __construct(
+        AnnotationDriverInterface $annotationDriver,
+        PropertyAccessorInterface $propertyAccessor,
+        TreeBuilderInterface $treeBuilder
+    ) {
         $this->annotationDriver = $annotationDriver;
         $this->propertyAccessor = $propertyAccessor;
         $this->treeBuilder = $treeBuilder;
@@ -70,10 +64,8 @@ class RepositoryFactory implements \Doctrine\ORM\Repository\RepositoryFactory
      *
      * @param EntityManagerInterface $entityManager The EntityManager instance.
      * @param string                               $entityName    The name of the entity.
-     *
-     * @return ObjectRepository
      */
-    protected function createRepository(EntityManagerInterface $entityManager, $entityName)
+    protected function createRepository(EntityManagerInterface $entityManager, string $entityName): ObjectRepository
     {
         $metadata            = $entityManager->getClassMetadata($entityName);
         $repositoryClassName = $metadata->customRepositoryClassName;
@@ -84,11 +76,15 @@ class RepositoryFactory implements \Doctrine\ORM\Repository\RepositoryFactory
         }
 
         $repo = new $repositoryClassName($entityManager, $metadata);
-        if ($repo instanceof LtreeEntityRepositoryInterface){
+
+        if ($repo instanceof LtreeEntityRepositoryInterface) {
             $repo->setAnnotationDriver($this->annotationDriver);
             $repo->setPropertyAccessor($this->propertyAccessor);
             $repo->setTreeBuilder($this->treeBuilder);
         }
+
+        assert(is_a($repo, ObjectRepository::class));
+
         return $repo;
     }
 }

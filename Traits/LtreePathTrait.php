@@ -1,49 +1,42 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: levsemin
- * Date: 01.03.15
- * Time: 16:05
- */
 
-namespace Slev\LtreeExtensionBundle\Traits;
+declare(strict_types=1);
 
+namespace DDL\LtreeExtensionBundle\Traits;
 
-use Slev\LtreeExtensionBundle\Annotation\LtreePath;
+use DDL\LtreeExtensionBundle\Annotation\LtreePath;
 use Doctrine\ORM\Mapping\Column;
+use function count;
 
 trait LtreePathTrait
 {
     /**
-     * @var array
-     *
+     * @var mixed[]
      * @Column(type="ltree")
      * @LtreePath()
      */
-    protected $ltreePath=null;
+    protected $ltreePath = null;
 
     /**
-     * @return array
+     * @return mixed[]
      */
-    public function getLtreePath()
+    public function getLtreePath(): array
     {
         return $this->ltreePath;
     }
 
     /**
-     * @param array $ltreePath
+     * @param mixed[] $ltreePath
      */
-    public function setLtreePath(array $ltreePath)
+    public function setLtreePath(array $ltreePath): void
     {
         $this->ltreePath = $ltreePath;
     }
 
     /**
      * Level number
-     *
-     * @return int
      */
-    public function getLevelNumber()
+    public function getLevelNumber(): int
     {
         return count($this->getLtreePath());
     }
