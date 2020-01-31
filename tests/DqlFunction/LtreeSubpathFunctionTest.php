@@ -31,10 +31,9 @@ class LtreeSubpathFunctionTest extends TestCase
         $parser->ArithmeticPrimary()->shouldBeCalled()->willReturn($expr->reveal());
         $parser->match()->shouldBeCalled()->withArguments([Lexer::T_COMMA]);
         $parser->ArithmeticPrimary()->shouldBeCalled()->willReturn($expr->reveal());
-
-        $lexer = $this->prophesize(Lexer::class);
-        $parser->getLexer()->shouldBeCalled()->willReturn($lexer->reveal());
-
+        $lexer = $this->prophesize(Lexer::class)->reveal();
+        $lexer->lookahead['type'] = null;
+        $parser->getLexer()->shouldBeCalled()->willReturn($lexer);
         $parser->match()->shouldBeCalled()->withArguments([Lexer::T_CLOSE_PARENTHESIS]);
         $sqlWalker = $this->prophesize(SqlWalker::class);
 
