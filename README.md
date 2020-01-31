@@ -1,9 +1,9 @@
-#Ltree extension bundle
+# Ltree extension bundle
 
 This bundle grants access to PostgreSQL ltree methods
 Based on [slev/ltree-extension-bundle](https://github.com/semin-lev/ltree-extension-bundle)
 
-##Installation
+## Installation
 
 ```shell script
 composer require lastov-dmitrii/ltree-extension-bundle
@@ -19,7 +19,7 @@ return [
 ];
 ```
 
-##DQL functions
+## DQL functions
 
 | DQL            	| SQL                    	| Usage                                                 	|
 |----------------	|------------------------	|-------------------------------------------------------	|
