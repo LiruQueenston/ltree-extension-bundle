@@ -46,7 +46,7 @@ class LTreeType extends Type
      *
      * @return string|null The database representation of the value.
      */
-    public function convertToDatabaseValue($value, AbstractPlatform $platform): ?array
+    public function convertToDatabaseValue($value, AbstractPlatform $platform): ?string
     {
         return is_array($value) ? implode('.', $value) : null;
     }
