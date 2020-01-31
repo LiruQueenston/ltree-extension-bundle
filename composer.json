@@ -1,7 +1,7 @@
 {
   "name" : "lastov-dmitrii/ltree-extension-bundle",
   "description" : "Symfony 4 bundle with additional functionality for PostgreSQL ltree extension",
-  "version" : "0.2.2",
+  "version" : "0.2.3",
   "type" : "symfony-bundle",
   "homepage": "https://github.com/lastov-dmitrii/ltree-extension-bundle",
   "license" : "MIT",
