@@ -36,7 +36,7 @@ class LtreeOperatorFunction extends FunctionNode
         $parser->match(Lexer::T_OPEN_PARENTHESIS);
         $this->first = $parser->ArithmeticPrimary();
         $parser->match(Lexer::T_COMMA);
-        $this->operator = $parser->StringExpression();
+        $this->operator = $parser->StringPrimary();
         $parser->match(Lexer::T_COMMA);
         $this->second = $parser->ArithmeticPrimary();
         $parser->match(Lexer::T_CLOSE_PARENTHESIS);

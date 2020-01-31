@@ -9,14 +9,8 @@
     <arg value="nps"/>
 
     <!-- Directories to be checked -->
-    <file>Annotation</file>
-    <file>DependencyInjection</file>
-    <file>DqlFunction</file>
-    <file>Listener</file>
-    <file>Repository</file>
-    <file>Traits</file>
-    <file>TreeBuilder</file>
-    <file>Types</file>
+    <file>./lib</file>
+    <file>./tests</file>
 
     <!-- Include full Doctrine Coding Standard -->
     <rule ref="Doctrine">
@@ -26,6 +20,10 @@
         <exclude name="SlevomatCodingStandard.Classes.SuperfluousTraitNaming.SuperfluousSuffix"/>
         <exclude name="Squiz.Commenting.FunctionComment.InvalidNoReturn" />
         <exclude name="Generic.Formatting.MultipleStatementAlignment" />
+    </rule>
+
+    <rule ref="SlevomatCodingStandard.PHP.RequireExplicitAssertion">
+        <exclude-pattern>tests/*</exclude-pattern>
     </rule>
 
     <!-- Do not align assignments -->

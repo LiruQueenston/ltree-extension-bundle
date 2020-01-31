@@ -60,10 +60,8 @@ class RepositoryFactory implements \Doctrine\ORM\Repository\RepositoryFactory
     }
 
     /**
-     * Create a new repository instance for an entity class.
-     *
      * @param EntityManagerInterface $entityManager The EntityManager instance.
-     * @param string                               $entityName    The name of the entity.
+     * @param string $entityName The name of the entity.
      */
     protected function createRepository(EntityManagerInterface $entityManager, string $entityName): ObjectRepository
     {
@@ -83,7 +81,7 @@ class RepositoryFactory implements \Doctrine\ORM\Repository\RepositoryFactory
             $repo->setTreeBuilder($this->treeBuilder);
         }
 
-        assert(is_a($repo, ObjectRepository::class));
+        assert($repo instanceof ObjectRepository);
 
         return $repo;
     }
