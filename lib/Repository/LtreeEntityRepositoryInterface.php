@@ -20,6 +20,7 @@ interface LtreeEntityRepositoryInterface
 
     /**
      * @param object $entity object entity
+     * @return QueryBuilder
      */
     public function getAllParentQueryBuilder(object $entity): QueryBuilder;
 
@@ -34,6 +35,7 @@ interface LtreeEntityRepositoryInterface
 
     /**
      * @param object $entity object entity
+     * @return QueryBuilder
      */
     public function getAllChildrenQueryBuilder(object $entity): QueryBuilder;
 

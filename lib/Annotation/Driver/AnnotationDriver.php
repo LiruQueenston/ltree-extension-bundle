@@ -50,6 +50,9 @@ class AnnotationDriver implements AnnotationDriverInterface
     }
 
     /**
+     * @param object $object
+     * @param string $annotationName
+     * @return ReflectionProperty
      * @throws PropertyNotFoundException
      */
     protected function findAnnotation(object $object, string $annotationName): ReflectionProperty

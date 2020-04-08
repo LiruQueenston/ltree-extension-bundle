@@ -10,7 +10,6 @@ use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 use function assert;
-use function is_a;
 use function ltrim;
 
 class RepositoryFactory implements \Doctrine\ORM\Repository\RepositoryFactory
@@ -62,6 +61,7 @@ class RepositoryFactory implements \Doctrine\ORM\Repository\RepositoryFactory
     /**
      * @param EntityManagerInterface $entityManager The EntityManager instance.
      * @param string $entityName The name of the entity.
+     * @return ObjectRepository
      */
     protected function createRepository(EntityManagerInterface $entityManager, string $entityName): ObjectRepository
     {

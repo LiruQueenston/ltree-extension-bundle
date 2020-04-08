@@ -1,7 +1,7 @@
 {
   "name" : "lastov-dmitrii/ltree-extension-bundle",
   "description" : "Symfony 4 bundle with additional functionality for PostgreSQL ltree extension",
-  "version" : "0.2.3",
+  "version" : "0.3.0",
   "type" : "symfony-bundle",
   "homepage": "https://github.com/lastov-dmitrii/ltree-extension-bundle",
   "license" : "MIT",
@@ -11,13 +11,13 @@
     "email" : "d.d.lastov@gmail.com"
   }],
   "require" : {
-    "php": ">=7.2",
-    "doctrine/orm": "~2.2",
-    "doctrine/doctrine-bundle": "~1.2",
-    "symfony/property-access": "~4",
-    "symfony/config": "~4",
-    "symfony/dependency-injection": "~4",
-    "symfony/http-kernel": "~4"
+    "php": ">=7.3",
+    "doctrine/orm": "^2.7",
+    "doctrine/doctrine-bundle": "^2.0",
+    "symfony/property-access": "^4.4|^5.0",
+    "symfony/config": "^4.4|^5.0",
+    "symfony/dependency-injection": "^4.4|^5.0",
+    "symfony/http-kernel": "^4.4|^5.0"
   },
   "autoload" : {
     "psr-4" : { "DDL\\LtreeExtensionBundle\\" : "lib" }
@@ -27,7 +27,7 @@
   },
   "extra" : {
     "branch-alias" : {
-      "dev-master" : "0.2.x-dev"
+      "dev-master" : "master"
     }
   },
   "require-dev": {

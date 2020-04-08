@@ -15,32 +15,39 @@ interface AnnotationDriverInterface
 
     /**
      * Check that ltree entity annotation is in the $object
+     * @param object $object
+     * @return bool
      */
     public function entityIsLtree(object $object): bool;
 
     /**
      * Check that ltree entity annotation is in the $className
+     * @param string $className
+     * @return bool
      */
     public function classIsLtree(string $className): bool;
 
     /**
      * Return children property reflection object
      *
-     * @throws PropertyNotFoundException
+     * @param object $object
+     * @return ReflectionProperty
      */
     public function getChildrenProperty(object $object): ReflectionProperty;
 
     /**
      * Return parent property reflection object
      *
-     * @throws PropertyNotFoundException
+     * @param object $object
+     * @return ReflectionProperty
      */
     public function getParentProperty(object $object): ReflectionProperty;
 
     /**
      * Return path property reflection object
      *
-     * @throws PropertyNotFoundException
+     * @param object $object
+     * @return ReflectionProperty
      */
     public function getPathProperty(object $object): ReflectionProperty;
 }
